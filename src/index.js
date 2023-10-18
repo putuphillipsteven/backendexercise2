@@ -16,7 +16,6 @@ app.use(parser.json());
 
 app.use((req, res, next) => {
   console.log(`Time: ${Date()}`);
-  console.log(path);
   next();
 });
 
