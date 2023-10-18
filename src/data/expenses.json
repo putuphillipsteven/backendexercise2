@@ -2,7 +2,15 @@
   "expenses": [
     {
       "id": 1,
-      "name": "billiard"
+      "name": "billiard",
+      "nominal": "10000",
+      "category": "for fun"
+    },
+    {
+      "id": 2,
+      "name": "indomie double",
+      "nominal": "16000",
+      "category": "eat"
     }
   ]
 }
