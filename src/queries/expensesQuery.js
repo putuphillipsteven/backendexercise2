@@ -20,4 +20,12 @@ const findExpense = async (id) => {
   }
 };
 
-module.exports = { getExpensesQuery, findExpense };
+const createExpense = async (name, nominal, category, date) => {
+  try {
+    await axios.post(`${JSON_URL}/expenses`, { name, nominal, category, date });
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports = { getExpensesQuery, findExpense, createExpense };
