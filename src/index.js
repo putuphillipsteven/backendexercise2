@@ -19,6 +19,10 @@ app.use((req, res, next) => {
   next();
 });
 
+const expensesRouter = require("./routes/expensesRouter");
+
+app.use("/expenses", expensesRouter);
+
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
