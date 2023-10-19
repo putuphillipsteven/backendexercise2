@@ -38,9 +38,18 @@ const updateExpense = async (id, name) => {
   }
 };
 
+const deleteExpense = async (id) => {
+  try {
+    await axios.delete(`${JSON_URL}/expenses/${id}`);
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   getExpensesQuery,
   findExpense,
   createExpense,
   updateExpense,
+  deleteExpense,
 };

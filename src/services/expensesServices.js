@@ -3,6 +3,7 @@ const {
   findExpense,
   createExpense,
   updateExpense,
+  deleteExpense,
 } = require("../queries/expensesQuery");
 
 const getExpensesService = async () => {
@@ -39,9 +40,18 @@ const updateExpenseService = async (id, name) => {
   }
 };
 
+const deleteExpenseService = async (id) => {
+  try {
+    await deleteExpense(id);
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   getExpensesService,
   findExpenseService,
   createExpenseService,
   updateExpenseService,
+  deleteExpenseService,
 };

@@ -3,6 +3,7 @@ const {
   findExpenseService,
   createExpenseService,
   updateExpenseService,
+  deleteExpenseService,
 } = require("../services/expensesServices");
 
 const getExpensesController = async (req, res) => {
@@ -66,9 +67,22 @@ const updateExpenseController = async (req, res) => {
   }
 };
 
+const deleteExpenseController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deleteExpenseService(id);
+    return res.status(200).json({
+      message: "Expenses Deleted",
+    });
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   getExpensesController,
   findExpenseController,
   createExpenseController,
   updateExpenseController,
+  deleteExpenseController,
 };

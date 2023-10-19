@@ -7,11 +7,13 @@ const {
   findExpenseController,
   createExpenseController,
   updateExpenseController,
+  deleteExpenseController,
 } = require("../controllers/expensesController");
 
 router.get("/", getExpensesController);
 router.get("/:id", findExpenseController);
 router.post("/", createExpenseController);
 router.patch("/:id", updateExpenseController);
+router.delete("/:id", deleteExpenseController);
 
 module.exports = router;
