@@ -2,6 +2,7 @@ const {
   getExpensesService,
   findExpenseService,
   createExpenseService,
+  updateExpenseService,
 } = require("../services/expensesServices");
 
 const getExpensesController = async (req, res) => {
@@ -21,10 +22,9 @@ const getExpensesController = async (req, res) => {
 const findExpenseController = async (req, res) => {
   try {
     const { id } = req.params;
-    // console.log(id);
     const expense = await findExpenseService(id);
     return res.status(200).json({
-      message: "The detail",
+      message: "Find expense detail success",
       expense,
     });
   } catch (err) {
@@ -39,7 +39,7 @@ const createExpenseController = async (req, res) => {
   try {
     const { name, nominal, category } = req.body;
     let date = new Date();
-    const expense = await createExpenseService(
+    await createExpenseService(
       name,
       nominal,
       category,
@@ -53,8 +53,22 @@ const createExpenseController = async (req, res) => {
   }
 };
 
+const updateExpenseController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+    await updateExpenseService(id, name);
+    return res.status(201).json({
+      message: "Update Success",
+    });
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   getExpensesController,
   findExpenseController,
   createExpenseController,
+  updateExpenseController,
 };

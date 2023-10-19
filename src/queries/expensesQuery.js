@@ -28,4 +28,19 @@ const createExpense = async (name, nominal, category, date) => {
   }
 };
 
-module.exports = { getExpensesQuery, findExpense, createExpense };
+const updateExpense = async (id, name) => {
+  try {
+    await axios.patch(`${JSON_URL}/expenses/${id}`, {
+      name,
+    });
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports = {
+  getExpensesQuery,
+  findExpense,
+  createExpense,
+  updateExpense,
+};
