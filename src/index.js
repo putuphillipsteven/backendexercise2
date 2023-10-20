@@ -14,9 +14,12 @@ const app = new express();
 
 app.use(parser.json());
 
+const date = new Date();
+
 app.use((req, res, next) => {
-  console.log(`Time: ${Date()}`);
-  console.log(path);
+  console.log(
+    `Time: ${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+  );
   next();
 });
 

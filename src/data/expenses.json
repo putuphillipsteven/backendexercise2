@@ -1,16 +1,41 @@
 {
   "expenses": [
     {
+      "name": "Indomie Double Updated 10/20/2023",
+      "nominal": "12000",
+      "category": "eat",
+      "date": "2023-10-19",
       "id": 1,
-      "name": "billiard",
-      "nominal": "10000",
-      "category": "for fun"
+      "dateUpdated": "2023-10-20"
     },
     {
-      "id": 2,
-      "name": "indomie double",
+      "name": "Indomie Double Updated",
       "nominal": "16000",
-      "category": "eat"
+      "category": "eat",
+      "date": "2023-10-19",
+      "id": 2
+    },
+    {
+      "name": "Kopi Robusta Updated",
+      "nominal": "60000",
+      "category": "eat",
+      "date": "2023-10-19",
+      "id": 3,
+      "dateUpdated": "2023-10-20"
+    },
+    {
+      "name": "Bensin Updated",
+      "nominal": "30000",
+      "category": "transportation",
+      "date": "2023-10-20",
+      "id": 4
+    },
+    {
+      "name": "Bensin to be deleted",
+      "nominal": "30000",
+      "category": "transportation",
+      "date": "2023-10-20",
+      "id": 5
     }
   ]
 }
