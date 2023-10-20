@@ -9,7 +9,6 @@ const {
 const getExpensesController = async (req, res) => {
   try {
     const { category = null, startDate = null, endDate = null } = req.query;
-    console.log(category, startDate, endDate);
     const expenses = await getExpensesService(category, startDate, endDate);
     return res.status(200).json({
       message: "GET EXPENSES SUCCESS",
