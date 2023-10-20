@@ -1,11 +1,12 @@
 {
   "expenses": [
     {
-      "name": "Indomie Double Updated second times",
+      "name": "Indomie Double Updated 10/20/2023",
       "nominal": "12000",
       "category": "eat",
       "date": "2023-10-19",
-      "id": 1
+      "id": 1,
+      "dateUpdated": "2023-10-20"
     },
     {
       "name": "Indomie Double Updated",
@@ -19,7 +20,22 @@
       "nominal": "60000",
       "category": "eat",
       "date": "2023-10-19",
-      "id": 3
+      "id": 3,
+      "dateUpdated": "2023-10-20"
+    },
+    {
+      "name": "Bensin Updated",
+      "nominal": "30000",
+      "category": "transportation",
+      "date": "2023-10-20",
+      "id": 4
+    },
+    {
+      "name": "Bensin to be deleted",
+      "nominal": "30000",
+      "category": "transportation",
+      "date": "2023-10-20",
+      "id": 5
     }
   ]
 }

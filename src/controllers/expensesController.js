@@ -4,18 +4,21 @@ const {
   createExpenseService,
   updateExpenseService,
   deleteExpenseService,
+  getTotalByCategoryService,
 } = require("../services/expensesServices");
 
 const getExpensesController = async (req, res) => {
   try {
-    const expenses = await getExpensesService();
+    const { category = null, startDate = null, endDate = null } = req.query;
+    console.log(category, startDate, endDate);
+    const expenses = await getExpensesService(category, startDate, endDate);
     return res.status(200).json({
-      message: "Get Expenses Success",
+      message: "GET EXPENSES SUCCESS",
       expenses,
     });
   } catch (err) {
     return res.status(500).json({
-      message: "get Error",
+      message: "GET EXPENSES ERROR",
     });
   }
 };
@@ -25,12 +28,12 @@ const findExpenseController = async (req, res) => {
     const { id } = req.params;
     const expense = await findExpenseService(id);
     return res.status(200).json({
-      message: "Find expense detail success",
+      message: "FIND EXPENSES DETAIL SUCCESS",
       expense,
     });
   } catch (err) {
     return res.status(500).json({
-      message: "find Error",
+      message: "FIND EXPENSES DETAIL ERROR",
       err,
     });
   }
@@ -47,23 +50,38 @@ const createExpenseController = async (req, res) => {
       (date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
     );
     return res.status(201).json({
-      message: "Create expense success",
+      message: "CREATE EXPENSES SUCCESS",
     });
   } catch (err) {
-    throw err;
+    return res.status(500).json({
+      message: "CREATE EXPENSES SUCCESS",
+      err,
+    });
   }
 };
 
 const updateExpenseController = async (req, res) => {
   try {
+    let dates = new Date();
     const { id } = req.params;
-    const { name } = req.body;
-    await updateExpenseService(id, name);
+    let { name, nominal, category, dateUpdated } = req.query;
+    await updateExpenseService(
+      id,
+      name,
+      nominal,
+      category,
+      (dateUpdated = `${dates.getFullYear()}-${
+        dates.getMonth() + 1
+      }-${dates.getDate()}`)
+    );
     return res.status(201).json({
-      message: "Update Success",
+      message: "UPDATE SUCCESS",
     });
   } catch (err) {
-    throw err;
+    return res.status(500).json({
+      message: "UPDATE FAILED",
+      err,
+    });
   }
 };
 
@@ -72,17 +90,36 @@ const deleteExpenseController = async (req, res) => {
     const { id } = req.params;
     await deleteExpenseService(id);
     return res.status(200).json({
-      message: "Expenses Deleted",
+      message: "EXPENSES DELETED",
     });
   } catch (err) {
-    throw err;
+    return res.status(500).json({
+      message: "FAILED TO DELETE EXPENSES",
+      err,
+    });
   }
 };
 
+const getTotalByCategoryController = async (req, res) => {
+  try {
+    let { category } = req.query;
+    let dataCategory = getTotalByCategoryService(category);
+    return res.status(200).json({
+      message: "CATEGORY FINDED",
+      dataCategory,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "FAILED TO FIND CATEGORY",
+      err,
+    });
+  }
+};
 module.exports = {
   getExpensesController,
   findExpenseController,
   createExpenseController,
   updateExpenseController,
   deleteExpenseController,
+  getTotalByCategoryController,
 };

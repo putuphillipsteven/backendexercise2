@@ -2,9 +2,13 @@ const axios = require("axios");
 
 const JSON_URL = process.env.JSON_URL;
 
-const getExpensesQuery = async () => {
+const getExpensesQuery = async (category, startDate, endDate) => {
   try {
-    const { data } = await axios.get(`${JSON_URL}/expenses`);
+    let url = `${JSON_URL}/expenses`;
+    if (category) url = `${url}?category=${category}`;
+    if (startDate && endDate)
+      url = `${url}?date_gte=${startDate}&&date_lte=${endDate}`;
+    const { data } = await axios.get(url);
     return data;
   } catch (err) {
     throw err;
@@ -28,10 +32,13 @@ const createExpense = async (name, nominal, category, date) => {
   }
 };
 
-const updateExpense = async (id, name) => {
+const updateExpense = async (id, name, nominal, category, dateUpdated) => {
   try {
     await axios.patch(`${JSON_URL}/expenses/${id}`, {
       name,
+      nominal,
+      category,
+      dateUpdated,
     });
   } catch (err) {
     throw err;
@@ -46,10 +53,22 @@ const deleteExpense = async (id) => {
   }
 };
 
+const getTotalByCategory = async (category) => {
+  try {
+    const { expenses } = await axios.get(
+      `${JSON_URL}/expenses?category=${category}`
+    );
+    return expenses;
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   getExpensesQuery,
   findExpense,
   createExpense,
   updateExpense,
   deleteExpense,
+  getTotalByCategory,
 };
