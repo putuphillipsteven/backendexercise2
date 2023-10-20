@@ -4,7 +4,6 @@ const {
   createExpense,
   updateExpense,
   deleteExpense,
-  getTotalByCategory,
 } = require("../queries/expensesQuery");
 
 const getExpensesService = async (category, startDate, endDate) => {
@@ -64,21 +63,10 @@ const deleteExpenseService = async (id) => {
   }
 };
 
-const getTotalByCategoryService = async (category) => {
-  try {
-    const data = await getTotalByCategory(category);
-    const dataCategory = data.map((data) => data.category === `${category}`);
-    return dataCategory;
-  } catch (err) {
-    throw err;
-  }
-};
-
 module.exports = {
   getExpensesService,
   findExpenseService,
   createExpenseService,
   updateExpenseService,
   deleteExpenseService,
-  getTotalByCategoryService,
 };

@@ -4,7 +4,6 @@ const {
   createExpenseService,
   updateExpenseService,
   deleteExpenseService,
-  getTotalByCategoryService,
 } = require("../services/expensesServices");
 
 const getExpensesController = async (req, res) => {
@@ -121,5 +120,4 @@ module.exports = {
   createExpenseController,
   updateExpenseController,
   deleteExpenseController,
-  getTotalByCategoryController,
 };
